@@ -70,7 +70,7 @@ class ResNet50(pl.LightningModule):
         self.initlr = self.params.optim.lr
         self.pretrained = self.params.pretrained
         self.num_classes = self.params.num_classes
-        self.model = models.resnet50(pretrained=self.pretrained)
+        self.model = models.resnet18(pretrained=self.pretrained)
         num_features = self.model.fc.in_features
         self.model.fc = nn.Linear(num_features, self.num_classes)
         self.criterion = nn.CrossEntropyLoss()
