@@ -187,7 +187,7 @@ def main():
         precision=16,
         enable_progress_bar=True,
         strategy='auto',
-        log_every_n_train_steps=5
+        #log_every_n_train_steps=5
 #        callbacks=[lr_monitor_callback]
     )
 
