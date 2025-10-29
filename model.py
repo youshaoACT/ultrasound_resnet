@@ -81,16 +81,21 @@ class ResNet50(pl.LightningModule):
             lr=self.initlr,
             weight_decay=0.01
         )
-        scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(
+        scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(
             optimizer,
-            T_max=self.epochs,
-            eta_min=1e-6,
+            mode='min',
+            factor=0.5,  # 学习率衰减系数
+            patience=10,  # 10个epoch没改善就降低学习率
+            min_lr=1e-7,
+            verbose=True
         )
+
         return {
             'optimizer': optimizer,
             'lr_scheduler': {
                 'scheduler': scheduler,
-                'interval': 'step',
+                "monitor": "val_loss",
+                'interval': 'epoch',
                 'frequency': 1
             },
         }
@@ -108,7 +113,15 @@ class ResNet50(pl.LightningModule):
         #x_batch = x_batch.cuda()
         y_hat = self(x_batch)#self(x)=self.__call__(x)=self.forward(x)
         loss = self.criterion(y_hat, y_batch)
-        self.log('train_loss', loss, prog_bar=True, on_epoch=True)
+
+        torch.nn.utils.clip_grad_norm_(self.parameters(), max_norm=1.0)
+
+        acc = (y_hat.argmax(1) == y_batch).float().mean()
+
+        self.log('train_loss', loss, prog_bar=True, on_step=False, on_epoch=True)
+        self.log('train_acc', acc, prog_bar=True, on_step=False, on_epoch=True)
+        self.log('lr', self.optimizers().param_groups[0]['lr'], prog_bar=True)
+
         return loss
 
     def validation_step(self, batch, batch_idx):
@@ -129,6 +142,7 @@ class ResNet50(pl.LightningModule):
             num_workers=0
         )
         return train_loader
+
     def val_dataloader(self):
         val_dataset = PKUDataset(self.params.data_list.test,train=False)
         val_loader = DataLoader(
@@ -173,7 +187,7 @@ def main():
         precision=16,
         enable_progress_bar=True,
         strategy='auto',
-#        log_every_n_train_steps=5
+        log_every_n_train_steps=5
 #        callbacks=[lr_monitor_callback]
     )
 
