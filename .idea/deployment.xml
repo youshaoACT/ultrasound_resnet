@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" autoUpload="Always" serverName="root@js1.blockelite.cn:17336 password" remoteFilesAllowedToDisappearOnAutoupload="false">
+  <component name="PublishConfigData" autoUpload="Always" serverName="root@js1.blockelite.cn:26812 password" remoteFilesAllowedToDisappearOnAutoupload="false">
     <serverData>
       <paths name="root@js1.blockelite.cn:11228 password">
         <serverdata>
@@ -31,6 +31,13 @@
         </serverdata>
       </paths>
       <paths name="root@js1.blockelite.cn:17336 password">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/home/vipuser/ultrasound/resnet" local="$PROJECT_DIR$" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="root@js1.blockelite.cn:17336 password (2)">
         <serverdata>
           <mappings>
             <mapping deploy="/home/vipuser/ultrasound/resnet" local="$PROJECT_DIR$" />
@@ -107,6 +114,20 @@
           </mappings>
         </serverdata>
       </paths>
+      <paths name="root@js1.blockelite.cn:25916 password">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/home/vipuser/ultrasound/resnet" local="$PROJECT_DIR$" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="root@js1.blockelite.cn:26812 password">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/home/vipuser/ultrasound/resnet" local="$PROJECT_DIR$" />
+          </mappings>
+        </serverdata>
+      </paths>
       <paths name="root@js1.blockelite.cn:29224 password">
         <serverdata>
           <mappings>
@@ -139,6 +160,13 @@
         <serverdata>
           <mappings>
             <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="root@js2.blockelite.cn:18216 password">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/home/vipuser/ultrasound/resnet" local="$PROJECT_DIR$" />
           </mappings>
         </serverdata>
       </paths>
